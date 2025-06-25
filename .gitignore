@@ -238,4 +238,4 @@ LOGO_SETUP.md
 generate-icons.js
 ICON_IMPLEMENTATION_SUMMARY.md
 scripts/generate-icons-sharp.js
-scripts/generate-icons-sharp.cjs
+/scripts
