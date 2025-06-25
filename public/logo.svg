@@ -1,0 +1,30 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="24" cy="24" r="24" fill="url(#gradient)" />
+  
+  <!-- Factory/Gear Icon -->
+  <g transform="translate(12, 12)">
+    <!-- Main Gear -->
+    <path d="M12 2L14.09 8.26L20 6L18 12L24 12L22 18L16 20L18.74 14.09L12 16L9.91 9.74L4 12L6 6L0 6L2 0L8 2L5.26 7.91L12 6V2Z" fill="white" opacity="0.9"/>
+    
+    <!-- Inner Circle -->
+    <circle cx="12" cy="12" r="4" fill="white"/>
+    
+    <!-- Center Dot -->
+    <circle cx="12" cy="12" r="1.5" fill="url(#gradient)"/>
+    
+    <!-- Token Symbols -->
+    <circle cx="6" cy="6" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="18" cy="6" r="2" fill="#FF6B6B" opacity="0.8"/>
+    <circle cx="6" cy="18" r="2" fill="#4ECDC4" opacity="0.8"/>
+    <circle cx="18" cy="18" r="2" fill="#45B7D1" opacity="0.8"/>
+  </g>
+  
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

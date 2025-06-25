@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { getContractAddress } from '../lib/contracts';
 import { useTokenManager } from '../hooks/useTokenManager';
-import { UserTokenWithMetadata, formatTokenDisplay, getTokenExplorerUrl } from '../lib/tokenStorage';
+import { formatTokenDisplay, getTokenExplorerUrl } from '../lib/tokenStorage';
 
 interface MintableTokenManagerProps {
   provider: ethers.BrowserProvider;
@@ -362,17 +362,7 @@ export default function MintableTokenManager({ provider, signer, userAddress }: 
     }
   };
 
-  const checkAddressRole = async (address: string, role: string): Promise<boolean> => {
-    if (!contract) return false;
 
-    try {
-      const roleHash = await contract[role]();
-      return await contract.hasRole(roleHash, address);
-    } catch (error) {
-      console.error('Error checking role:', error);
-      return false;
-    }
-  };
 
   if (loading) {
     return (

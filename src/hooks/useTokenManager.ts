@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
-import { tokenStorage, UserTokenWithMetadata, UserToken, createUserTokenFromEvent } from '../lib/tokenStorage';
+import { tokenStorage, UserTokenWithMetadata, UserToken } from '../lib/tokenStorage';
 import { ContractUtils } from '../lib/contracts';
 
 export interface UseTokenManagerReturn {
@@ -222,51 +222,51 @@ export function useTokenCreationListener(
   useEffect(() => {
     if (!provider || !userAddress) return;
 
-    const handleTokenCreated = (
-      tokenAddress: string,
-      creator: string,
-      name: string,
-      symbol: string,
-      initialSupply: bigint,
-      maxSupply: bigint,
-      decimals: number,
-      event: any
-    ) => {
-      // Only handle tokens created by the current user
-      if (creator.toLowerCase() !== userAddress.toLowerCase()) return;
+    // const handleTokenCreated = (
+    //   tokenAddress: string,
+    //   creator: string,
+    //   name: string,
+    //   symbol: string,
+    //   initialSupply: bigint,
+    //   maxSupply: bigint,
+    //   decimals: number,
+    //   event: any
+    // ) => {
+    //   // Only handle tokens created by the current user
+    //   if (creator.toLowerCase() !== userAddress.toLowerCase()) return;
 
-      console.log('Token created event:', {
-        tokenAddress,
-        creator,
-        name,
-        symbol,
-        initialSupply: initialSupply.toString(),
-        maxSupply: maxSupply.toString(),
-        decimals
-      });
+    //   console.log('Token created event:', {
+    //     tokenAddress,
+    //     creator,
+    //     name,
+    //     symbol,
+    //     initialSupply: initialSupply.toString(),
+    //     maxSupply: maxSupply.toString(),
+    //     decimals
+    //   });
 
-      const userToken: UserToken = {
-        address: tokenAddress,
-        name,
-        symbol,
-        initialSupply: initialSupply.toString(),
-        maxSupply: maxSupply.toString(),
-        decimals,
-        creator,
-        createdAt: Date.now(),
-        transactionHash: event.transactionHash || '',
-        network: 'Edgen Chain',
-        chainId: 4207
-      };
+    //   const userToken: UserToken = {
+    //     address: tokenAddress,
+    //     name,
+    //     symbol,
+    //     initialSupply: initialSupply.toString(),
+    //     maxSupply: maxSupply.toString(),
+    //     decimals,
+    //     creator,
+    //     createdAt: Date.now(),
+    //     transactionHash: event.transactionHash || '',
+    //     network: 'Edgen Chain',
+    //     chainId: 4207
+    //   };
 
-      // Add to storage
-      tokenStorage.addUserToken(userAddress, userToken);
-      
-      // Call callback if provided
-      if (onTokenCreated) {
-        onTokenCreated(userToken);
-      }
-    };
+    //   // Add to storage
+    //   tokenStorage.addUserToken(userAddress, userToken);
+
+    //   // Call callback if provided
+    //   if (onTokenCreated) {
+    //     onTokenCreated(userToken);
+    //   }
+    // };
 
     // Set up event listener
     try {

@@ -93,9 +93,6 @@ out/
 # Nuxt.js build / generate output (if mixed with Nuxt.js)
 .nuxt/
 
-# Gatsby files (if mixed with Gatsby)
-.cache/
-public/
 
 # Storybook build outputs
 .out/
@@ -236,5 +233,9 @@ private-keys.txt
 
 # Custom application files
 uploads/
-public/uploads/
 static/uploads/
+LOGO_SETUP.md
+generate-icons.js
+ICON_IMPLEMENTATION_SUMMARY.md
+scripts/generate-icons-sharp.js
+scripts/generate-icons-sharp.cjs

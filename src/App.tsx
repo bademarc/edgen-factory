@@ -6,6 +6,8 @@ import MintableTokenManager from '@/components/MintableTokenManager';
 import TokenPortfolio from '@/components/TokenPortfolio';
 import ClientOnly from '@/components/ClientOnly';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import Header from '@/components/Header';
+import Logo from '@/components/Logo';
 
 interface CreatedToken {
   address: string;
@@ -23,7 +25,6 @@ function App() {
   const [userAddress, setUserAddress] = useState<string>('');
   const [createdTokens, setCreatedTokens] = useState<CreatedToken[]>([]);
   const [activeTab, setActiveTab] = useState<'portfolio' | 'factory' | 'mintable'>('portfolio');
-  const [selectedTokenAddress, setSelectedTokenAddress] = useState<string>('');
 
   const handleWalletConnected = (
     walletProvider: ethers.BrowserProvider,
@@ -58,8 +59,7 @@ function App() {
     setActiveTab('portfolio');
   };
 
-  const handleSelectToken = (tokenAddress: string) => {
-    setSelectedTokenAddress(tokenAddress);
+  const handleSelectToken = (_tokenAddress: string) => {
     setActiveTab('mintable');
   };
 
@@ -67,7 +67,7 @@ function App() {
     setActiveTab('factory');
   };
 
-  const formatSupply = (supply: string, decimals: number) => {
+  const formatSupply = (supply: string, _decimals: number) => {
     try {
       // Convert BigInt string to number for display
       const supplyBI = BigInt(supply);
@@ -81,22 +81,7 @@ function App() {
     <ErrorBoundary>
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Edgen Chain Token Factory</h1>
-                <p className="text-gray-600 mt-1">Create ERC-20 tokens on Edgen Chain</p>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="text-sm text-gray-500">
-                  <div>Network: Edgen Chain</div>
-                  <div>Chain ID: 4207</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -298,11 +283,30 @@ function App() {
         {/* Footer */}
         <footer className="bg-white border-t mt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="text-center text-sm text-gray-500">
-              <p>Edgen Chain Token Factory - Create ERC-20 tokens with ease</p>
-              <p className="mt-1">
-                Make sure to test on testnet before deploying to mainnet
-              </p>
+            <div className="flex flex-col items-center space-y-4">
+              {/* Footer Logo */}
+              <Logo size="sm" showText={true} variant="default" />
+
+              {/* Footer Text */}
+              <div className="text-center text-sm text-gray-500">
+                <p>Create ERC-20 tokens with ease on Edgen Chain</p>
+                <p className="mt-1">
+                  Make sure to test on testnet before deploying to mainnet
+                </p>
+              </div>
+
+              {/* Links */}
+              <div className="flex space-x-6 text-xs text-gray-400">
+                <a href="https://edgenscan.io" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                  Block Explorer
+                </a>
+                <span>•</span>
+                <a href="https://rpc.layeredge.io" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                  RPC Endpoint
+                </a>
+                <span>•</span>
+                <span>Chain ID: 4207</span>
+              </div>
             </div>
           </div>
         </footer>

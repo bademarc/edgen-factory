@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ethers } from 'ethers';
 import { useTokenManager } from '../hooks/useTokenManager';
 import { UserTokenWithMetadata, formatTokenDisplay, getTokenExplorerUrl } from '../lib/tokenStorage';
@@ -17,16 +17,14 @@ interface TokenStats {
   recentActivity: number;
 }
 
-export default function TokenPortfolio({ 
-  provider, 
-  signer, 
-  userAddress, 
+export default function TokenPortfolio({
+  signer,
+  userAddress,
   onSelectToken,
-  onCreateToken 
+  onCreateToken
 }: TokenPortfolioProps) {
   const {
     userTokens,
-    selectedToken,
     isLoading,
     error,
     refreshTokens,
@@ -38,7 +36,7 @@ export default function TokenPortfolio({
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'created' | 'symbol'>('created');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [showStats, setShowStats] = useState(true);
+  const [showStats] = useState(true);
 
   // Filter and sort tokens
   const filteredTokens = searchQuery 
